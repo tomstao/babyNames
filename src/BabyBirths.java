@@ -131,4 +131,43 @@ public class BabyBirths {
         String gender = "F";
         whatIsNameInYear(name, year, newYear, gender);
     }
+
+    public static int yearOfHighestRank(String name,String gender)
+    {
+        int highestRank = 0;
+        int year = 0;
+
+        DirectoryResource dr = new DirectoryResource();
+        for(File f:dr.selectedFiles()){
+            String yearOfFile = f.getName().replace("yob","");
+            yearOfFile = yearOfFile.replace("short.csv","");
+            int currYear = Integer.parseInt(yearOfFile);
+
+            int currRank = getRank(currYear,name,gender);
+            if(currRank == -1) continue;
+            if(highestRank == 0) {
+                highestRank = currRank;
+                year = currYear;
+            }
+            if(currRank < highestRank) {
+                highestRank = currRank;
+                year = currYear;
+            }
+        }
+        if( year == 0 ) return -1 ;
+
+        return year;
+    }
+
+    public static void test_yearOfHighestRank()
+    {
+        String name = "Mason";
+        String gender = "M";
+
+        int year = yearOfHighestRank(name,gender);
+        if(year == -1) System.out.println("No rank found for " + name);
+        else {
+            System.out.println("Name: " + name + ", Gender: " + gender + ", Highest Rank: " + year);
+        }
+    }
 }

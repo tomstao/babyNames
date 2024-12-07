@@ -8,7 +8,8 @@ public class Main {
        // BabyBirths.testTotalbirths();
        // BabyBirths.testGetRank();
         //BabyBirths.test_GetName();
-        BabyBirths.testwhatIsNameInYear();
+        //BabyBirths.testwhatIsNameInYear();
+        BabyBirths.test_yearOfHighestRank();
 
     }
 }
