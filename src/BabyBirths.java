@@ -170,4 +170,37 @@ public class BabyBirths {
             System.out.println("Name: " + name + ", Gender: " + gender + ", Highest Rank: " + year);
         }
     }
+
+    public static double getAverageRank(String name,String gender)
+    {
+        DirectoryResource dr = new DirectoryResource();
+        double rankCounter = 0;
+        double totalRank = 0;
+        for(File f:dr.selectedFiles()){
+            String yearOfFile = f.getName().replace("yob","");
+            yearOfFile = yearOfFile.replace("short.csv","");
+            int currYear = Integer.parseInt(yearOfFile);
+
+            int currRank = getRank(currYear,name,gender);
+            if(currRank == -1) continue;
+            totalRank += currRank;
+            rankCounter++;
+        }
+        if (rankCounter == 0) return -1 ;
+        return totalRank / rankCounter;
+    }
+
+    public static void test_getAverageRank()
+    {
+        //String name = "Mason";
+        String gender = "M";
+        String name = "Jacob";
+        double avgRank= getAverageRank(name,gender);
+
+        if(avgRank == -1) System.out.println("No rank found for " + name);
+        else {
+            System.out.println("Name: " + name + ", Gender: " + gender + ", Average: " + avgRank);
+        }
+
+    }
 }
