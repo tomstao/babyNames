@@ -203,4 +203,37 @@ public class BabyBirths {
         }
 
     }
+
+    public static int getTotalBirthsRankedHigher(int year, String name, String gender)
+    {
+        int lowestRank = getRank(year,name,gender);
+        String fileName= "us_babynames/us_babynames_test/yob" + year + "short.csv";
+        FileResource fr = new FileResource(fileName);
+        int totalBirths = 0;
+        int rank = 0;
+        for(CSVRecord record:fr.getCSVParser(false))
+        {
+            String currGender = record.get(1);
+            if(!(currGender.equals(gender))) continue;
+            rank ++;
+
+            if(rank == lowestRank) break;
+            int currBirh = Integer.parseInt(record.get(2));
+           // System.out.println(currBirh);
+            totalBirths += currBirh;
+        }
+
+        return totalBirths;
+    }
+
+
+    public static void test_getTotalBirthsRankedHigher()
+    {
+        String gender = "M";
+        String name = "Ethan";
+        int year = 2012;
+        int result = getTotalBirthsRankedHigher(year,name,gender);
+        System.out.println("The Births of people who called " + name + " born in " + year + " would be " + result);
+
+    }
 }
