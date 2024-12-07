@@ -84,4 +84,34 @@ public class BabyBirths {
 
 
     }
+
+    public static String getName(int year, int rank, String gender)
+    {
+        String fileName= "us_babynames/us_babynames_test/yob" + year + "short.csv";
+        FileResource fr = new FileResource(fileName);
+        int rankNum = 0;
+        for(CSVRecord record:fr.getCSVParser(false))
+        {
+            String currGender = record.get(1);
+            if(!(currGender.equals(gender))) continue;
+            rankNum++;
+
+            String currName = record.get(0);
+            if(rankNum == rank) return currName;
+        }
+
+        return "NO NAME";
+    }
+
+    public static void test_GetName()
+    {
+        int year = 2012;
+        int rank = 2;
+        int rank2 = 10;
+        String gender = "M";
+       String rank2ndName = getName(year,rank,gender);
+       String rank10Name = getName(year,rank2,gender);
+       System.out.println("Name: " + rank2ndName + ", Gender: " + gender + ", Rank: " + rank);
+       System.out.println("Rank: " + rank10Name + ", Gender: " + gender + ", Rank: " + rank2);
+    }
 }

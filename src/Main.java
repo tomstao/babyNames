@@ -6,7 +6,8 @@ public class Main {
 
         //BabyBirths.printNames();
        // BabyBirths.testTotalbirths();
-        BabyBirths.testGetRank();
+       // BabyBirths.testGetRank();
+        BabyBirths.test_GetName();
 
     }
 }
