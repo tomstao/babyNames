@@ -114,4 +114,21 @@ public class BabyBirths {
        System.out.println("Name: " + rank2ndName + ", Gender: " + gender + ", Rank: " + rank);
        System.out.println("Rank: " + rank10Name + ", Gender: " + gender + ", Rank: " + rank2);
     }
+
+
+    public static void whatIsNameInYear(String name, int year, int newYear, String gender)
+    {
+        int namerank = getRank(year,name,gender);
+        String newName = getName(newYear,namerank,gender);
+        System.out.println(name + " born in " + year + " would be " + newName + " if she was born in " + newYear + ".");
+    }
+
+    public static void testwhatIsNameInYear()
+    {
+        String name = "Isabella";
+        int year = 2012;
+        int newYear = 2014;
+        String gender = "F";
+        whatIsNameInYear(name, year, newYear, gender);
+    }
 }
